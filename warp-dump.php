@@ -128,6 +128,7 @@ function warp_dump(...$vars)
           white-space: pre;
           word-wrap: normal;
           cursor: pointer;
+          font-size: 0.85rem;
       }
 
       .warp-dump-feedback {
