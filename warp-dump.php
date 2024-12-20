@@ -157,16 +157,40 @@ function warp_dump(...$vars)
 
       .warp-dump-feedback {
           display: none;
-          position: fixed;
-          top: 5vh;
+          position: absolute;
+          top: 50%;
           left: 50%;
-          transform: translateX(-50%);
-          background: var(--warp-dump-feedback-bg);
+          transform: translate(-50%, -50%);
+          background-color: var(--warp-dump-feedback-bg);
           color: var(--warp-dump-feedback-text);
           padding: 8px 16px;
           border-radius: 4px;
           box-shadow: 0 2px 5px var(--warp-dump-feedback-shadow);
           z-index: 9999;
+          white-space: nowrap;
+          animation: feedbackIn 0.2s ease-out forwards;
+      }
+
+      @keyframes feedbackIn {
+          from {
+              opacity: 0;
+              transform: translate(-50%, -50%) scale(0.9);
+          }
+          to {
+              opacity: 1;
+              transform: translate(-50%, -50%) scale(1);
+          }
+      }
+
+      @keyframes feedbackOut {
+          from {
+              opacity: 1;
+              transform: translate(-50%, -50%) scale(1);
+          }
+          to {
+              opacity: 0;
+              transform: translate(-50%, -50%) scale(0.9);
+          }
       }
 
       .warp-dump-search {
@@ -359,8 +383,12 @@ function warp_dump(...$vars)
 
         feedback.textContent = message;
         feedback.style.display = "block";
+        feedback.style.animation = "feedbackIn 0.2s ease-out forwards";
         setTimeout(() => {
-          feedback.style.display = "none";
+          feedback.style.animation = "feedbackOut 0.2s ease-out forwards";
+          setTimeout(() => {
+            feedback.style.display = "none";
+          }, 200);
         }, 2000);
       }
 
