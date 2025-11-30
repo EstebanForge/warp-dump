@@ -445,7 +445,7 @@ function warp_dump(...$vars)
 
         echo '<div id="' . $dump_id . '-container" class="warp-dump-container">';
         echo '<div class="warp-dump-header">';
-        echo '<h3 class="warp-dump-title">$' . esc_html($title) . '</h3>';
+        echo '<h3 class="warp-dump-title">$' . htmlspecialchars($title) . '</h3>';
         echo '<span class="warp-actions">
           <button class="warp-copy-button" title="Copy to clipboard" onclick="warpdumpCopyDump(\'' . $dump_id . '\')">
             <span class="warp-copy-icon"></span>
